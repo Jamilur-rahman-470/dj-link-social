@@ -1,0 +1,53 @@
+{% load static %}
+<header class="container my-3">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="{% url 'home' %}"
+      ><img src="{% static 'images/link.png' %}" alt="Link" width="32"
+    /></a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <i data-feather="menu"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a href="{% url 'home' %}" class="nav-link"
+            ><i data-feather="home"></i
+          ></a>
+        </li>
+      </ul>
+      <ul class="navbar-nav float-right">
+        {% if request.user.is_authenticated %}
+        <li class="nav-item active">
+          <a href="{% url 'dash' %}" class="nav-link"
+            ><i data-feather="user"></i
+          ></a>
+        </li>
+        <li class="nav-item active">
+          <a href="{% url 'logout' %}" class="btn btn-primary btn-md">Logout</a>
+        </li>
+
+        {% else %}
+        <li class="nav-item active">
+          <a href="{% url 'login' %}" class="btn btn-primary btn-md">Login</a>
+        </li>
+        {% endif %}
+      </ul>
+    </div>
+  </nav>
+</header>
+
+{% block extra_style %}
+<style>
+  .navbar-toggler {
+    outline: none;
+  }
+</style>
+{% endblock extra_style %}
